@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-      if ($contrasena == $row['contrasena']) {
+      if ($hashcontra == $row['contrasena']) {
         setcookie('session', $row['email'], time() + (86400 * 30) * 360, "/");
         header("location: index.php");
       } else {
