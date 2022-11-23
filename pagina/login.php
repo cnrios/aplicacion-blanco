@@ -7,21 +7,19 @@ if (isset($_COOKIE['session'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $dato = $_POST['email'];
+  $email = $_POST['email'];
   $contrasena = $_POST['contrasena'];
 
-  if (strpos($dato, '@')) {
-    $sql = "SELECT * FROM usuarios WHERE email = '$dato'";
-  } else {
-    $sql = "SELECT * FROM usuarios WHERE nombre = '$dato'";
+  if (strpos($email, '@')) {
+    $sql = "SELECT * FROM usuario WHERE email = '$email'";
   }
 
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-      if ($hashcontra == $row['contrasena']) {
-        setcookie('session', $row['email'], time() + (86400 * 30) * 360, "/");
+      if (password_verify($contrasena, $row['contrasena'])) {
+        setcookie('session', $row['id'], time() + (86400 * 30) * 360, "/");
         header("location: index.php");
       } else {
         $msg = '<body> <div class="alert alert-danger">
@@ -57,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <input name="email" id="" placeholder="Email" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
       <input type="password" name="contrasena" id="" placeholder="Password" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
       <input class="bg-rose-700 text-white rounded w-full text-2xl py-3 flex justify-center items-center" type="submit" value="Iniciar sesion" class="boton">
-      <a href="register.php" class="text-nuetral-700 text-xl">No tenes una cuenta? Registrate</a>
+      <a class="text-nuetral-700 text-xl">¿No tenes una cuenta?</a><a href="register.php" class="text-blue-700 text-xl"> Registrate</a>
       <?php if (isset($msg)) echo $msg ?>
     </form>
   </div>
