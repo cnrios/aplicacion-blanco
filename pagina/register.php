@@ -11,7 +11,7 @@ if (isset($_POST['apellido'])) $apellido = $_POST['apellido'];
 if (isset($_POST['email'])) $email = $_POST['email'];
 if (isset($_POST['contrasena'])) $contrasena = $_POST['contrasena'];
 if (isset($_POST['telefono'])) $telefono = $_POST['telefono'];
-
+$arroba = "@";
 $hashcontra = password_hash($contrasena, PASSWORD_DEFAULT);
 $idunico = uniqid();
 
@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<strong  class="text-red-700">Este usuario ya existe</strong>.
         	</div>';
   } else {
+    if (strpos($email, $arroba) !== false ){
       $sql = "insert into usuario (nombre,apellido,email,telefono,contrasena) values ('$nombre','$apellido', '$email','$telefono', '$hashcontra')";
       
       if ($conn->query($sql) === TRUE) {
@@ -44,11 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="alert alert-success">
           <strong class="text-green-700">El TAG '.$idunico.' se asigno correctamente al usuario.</strong><br> 
             </div>';} else {
-              $msg = $msg. '<div class="alert alert-danger">
-          <strong class="text-rose-700">Hubo un error al asignar el TAG.</strong> 
-            </div>';}
+              $msg = $msg.'
+              <div class="alert alert-danger">
+                <strong class="text-rose-700">Hubo un error al asignar el TAG.</strong> 
+                </div>';}
       }
-
+      
+    }
+    else {
+      $msg = '<div class="alert alert-success">
+      <strong class="text-rose-700">Use un formato email correcto.</strong> 
+        </div>';}
       }
 
     }
