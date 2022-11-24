@@ -16,7 +16,7 @@ $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuar
 
 if (isset($_GET['q'])) {
   $search = $_GET['q'];
-  $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$q'";
+  $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$search'";
 }
 $resultAsistencias = $conn->query($sql);
 ?>
