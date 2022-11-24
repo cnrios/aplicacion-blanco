@@ -7,17 +7,23 @@ if (isset($_COOKIE['session'])) {
   $sql = "select nombre from usuario where id = '$id'";
   $result = $conn->query($sql);
 
-  $userimg = "./assets/images/usuario.jpg";
-  if(file_exists("./assets/images/$id.jpg")){
-    $userimg = "./assets/images/$id.jpg";
-  }
-  
-
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       $nombre = $row['nombre'];
     }
   }
+  
+  $userimg = "./assets/images/usuario.jpg";
+  if(file_exists("./assets/images/$id.jpg")){
+    $userimg = "./assets/images/$id.jpg";
+  }
+
+  $sql = "SELECT * FROM rol WHERE idusuario ='$id'";
+  $result = $conn->query($sql);
+  while ($row = $result->fetch_assoc()) {
+    $idrol = $row['idrol'];
+  }
+  
 }
 
 $search = "";
@@ -55,8 +61,10 @@ if (isset($_GET['q'])) $search = $_GET['q'];
     <div id="dropdown" class="absolute flex flex-col justify-end items-end right-0 top-16">
       <div class="flex flex-col justify-center items-center p-4 gap-2 bg-rose-700">
       <a href="cambiarfoto.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Cambiar Foto</a>
-      <a href="darpresentetag.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente con TAG</a>
-	  	<a href="darpresenteform.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente por formulario</a>
+      <?php if ($idrol==1) { ?>
+        <a href="darpresentetag.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente con TAG</a>
+	  	  <a href="darpresenteform.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente por formulario</a>
+        <?php } ?>
       <a href="logout.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Cerrar sesion</a>
       </div>
     <?php } ?>
