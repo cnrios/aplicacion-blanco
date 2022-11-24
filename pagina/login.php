@@ -52,8 +52,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="bg-rose-800 flex justify-center items-center h-screen">
     <form action="login.php" method="post" class="flex shadow-xl flex-col bg-white px-12 gap-4 py-4 rounded justify-center items-center">
       <img class="w-[200px] aspect-square" src="./assets/images/usuario.jpg" alt="Usuario">
-      <input name="email" id="" placeholder="Email" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
-      <input type="password" name="contrasena" id="" placeholder="Password" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
+      <input name="email" required id="" placeholder="Email" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
+      <input type="password" name="contrasena" required id="" placeholder="Password" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
       <input class="bg-rose-700 text-white rounded w-full text-2xl py-3 flex justify-center items-center" type="submit" value="Iniciar sesion" class="boton">
       <a class="text-nuetral-700 text-xl">¿No tenes una cuenta?</a><a href="register.php" class="text-blue-700 text-xl"> Registrate</a>
       <?php if (isset($msg)) echo $msg ?>
