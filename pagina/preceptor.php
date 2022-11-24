@@ -42,15 +42,16 @@
                        $actualimg = "./assets/images/$acutalid.jpg";
                     }
         
-                    if(file_exists("./assets/images/$acutalid.jpg")){
-                      $actualimg = "./assets/images/$acutalid.jpg";
+                    if(file_exists("./assets/images/$acutalid.jpeg")){
+                      $actualimg = "./assets/images/$acutalid.jpeg";
                     }
         
-                    if(file_exists("./assets/images/$acutalid.jpg")){
-                     $actualimg = "./assets/images/$acutalid.jpg";
+                    if(file_exists("./assets/images/$acutalid.png")){
+                     $actualimg = "./assets/images/$acutalid.png";
                      }
         
           echo  $actualimg; ?>" alt="Alumno">
+         
             <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[100px] p-4 gap-2 flex flex-col">
 
               <table>
