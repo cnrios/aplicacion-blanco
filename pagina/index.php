@@ -72,12 +72,11 @@ $resultAsistencias = $conn->query($sql);
             <th>fecha</th>
            <th>estado</th>
         </tr>
-        <tr>   
-           <form method="POST" action="preceptor.php" name ="formeditar" >                
-              <td><input type="text" name="nombre" value=<?php echo $row['nombre'];?> readonly></td>
-              <td><input type="text" name="apellido" value=<?php echo $row['apellido'];?> readonly></td>
-              <td><input type="text" name="fecha" value=<?php echo $row['fecha'];?> readonly></td>
-              <td><input type="text" name="estado" value=<?php echo $row['estado'];?> readonly></td>
+        <tr>                  
+              <td><p class="bg-white"> <?php echo $row['nombre'];?> </p></td>
+              <td><p class="bg-white"> <?php echo $row['apellido'];?> </p></td>
+              <td><p class="bg-white"> <?php echo $row['fecha'];?> </p></td>
+              <td><p class="bg-white"> <?php echo $row['estado'];?> </p></td>
         </tr>
       </table>
     </div>
