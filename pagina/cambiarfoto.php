@@ -2,10 +2,21 @@
 
 $id = $_COOKIE["session"];
 
+
 $userimg = "./assets/images/usuario.jpg";
-  if(file_exists("./assets/images/$id.jpg")){
-    $userimg = "./assets/images/$id.jpg";
-  }
+
+if(file_exists("./assets/images/$id.jpg")){
+  $userimg = "./assets/images/$id.jpg";
+}
+
+if(file_exists("./assets/images/$id.jpeg")){
+  $userimg = "./assets/images/$id.jpeg";
+}
+
+if(file_exists("./assets/images/$id.png")){
+  $userimg = "./assets/images/$id.png";
+} 
+
 
 ?>
 
