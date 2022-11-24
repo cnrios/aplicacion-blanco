@@ -10,23 +10,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $email = $_POST['email'];
   $contrasena = $_POST['contrasena'];
 
-  if (strpos($email, '@')) {
-    $sql = "SELECT * FROM usuario WHERE email = '$email'";
-  }
-
+  $sql = "SELECT * FROM usuario WHERE email = '$email'";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
       if (password_verify($contrasena, $row['contrasena'])) {
         setcookie('session', $row['id'], time() + (86400 * 30) * 360, "/");
-        header("location: index.php");
+        $id = $row['id'];
+        $sql = "SELECT * FROM rol WHERE idusuario ='$id'";
+        $result = $conn->query($sql);
+        while ($row = $result->fetch_assoc()) {
+          if($row['idrol']==1){header("location: alumno.php");}
+          if($row['idrol']==2){header("location: preceptor.php");}
+          if($row['idrol']==3){header("location: admin.php");}
+        }
       } else {
-        $msg = '<body> <div class="alert alert-danger">
-        <strong class="text-red-900"> La contraseña ingresada es incorrecta.</strong>
-      </div> </body>';
-      }
-    }
+          $msg = '<body> <div class="alert alert-danger">
+          <strong class="text-red-900"> La contraseña ingresada es incorrecta.</strong>
+          </div> </body>';
+        }
+    } 
   } else {
     $msg = '<body> <div class="alert alert-danger">
     <strong  class="text-red-900">El usuario no existe.</strong> 
