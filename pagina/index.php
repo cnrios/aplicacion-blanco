@@ -1,6 +1,17 @@
 <?php
 include './utils/db.php';
 
+if (isset($_COOKIE['session'])) {
+  $id = $_COOKIE["session"];
+  $sql = "SELECT * FROM rol WHERE idusuario ='$id'";
+  $result = $conn->query($sql);
+  while ($row = $result->fetch_assoc()) {
+    if($row['idrol']==1){header("location: alumno.php");}
+    if($row['idrol']==2){header("location: preceptor.php");}
+    if($row['idrol']==3){header("location: admin.php");}
+  }
+}
+
 $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id";
 
 if (isset($_GET['q'])) {
