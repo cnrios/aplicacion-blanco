@@ -1,15 +1,14 @@
   <?php
   include './utils/db.php';
 
+  
   $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id";
 
   if (isset($_GET['q'])) {
     $search = $_GET['q'];
     $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$q'";
   }
-
   $resultAsistencias = $conn->query($sql);
-
   ?>
 
   <!DOCTYPE html>
@@ -34,7 +33,24 @@
 
         <?php while ($row = $resultAsistencias->fetch_assoc()) { ?>
           <div class="p-4 z-10 shadow-2xl bg-rose-700 border gap-4 border-neutral-300 rounded flex jusitfy-center items-center">
-            <iframe class="h-[200px] aspect-video rounded z-50 shadow-lg" src="<?php echo $row['id']; ?>" frameborder="0" allowfullscreen></iframe>
+          <img class="border-4 border-black w-[200px] rounded-full" src="<?php 
+          
+          $actualimg = "./assets/images/usuario.jpg";
+          $acutalid = $row['id'];
+        
+                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
+                       $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                    }
+        
+                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
+                      $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                    }
+        
+                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
+                     $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                     }
+        
+          echo  $userimg; ?>" alt="Usuario">
             <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[200px] p-4 gap-2 flex flex-col">
 
               <table>
@@ -78,3 +94,4 @@
   </body>
 
   </html>
+

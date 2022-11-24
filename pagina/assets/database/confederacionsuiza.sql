@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2022 a las 04:39:50
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+-- Tiempo de generación: 24-11-2022 a las 11:02:10
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,10 @@ CREATE TABLE `asistencia` (
 
 INSERT INTO `asistencia` (`id`, `idusuario`, `fecha`, `estado`) VALUES
 (1, 18, '2022-11-24 00:35:35', 'presente'),
-(2, 18, '2022-11-24 00:35:38', 'presente');
+(6, 20, '2022-11-24 09:41:43', 'presente'),
+(7, 23, '2022-11-24 09:42:33', 'presente'),
+(8, 22, '2022-11-24 09:42:33', 'ausente'),
+(9, 27, '2022-11-24 09:42:33', 'tarde');
 
 -- --------------------------------------------------------
 
@@ -227,7 +230,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `cursos`
