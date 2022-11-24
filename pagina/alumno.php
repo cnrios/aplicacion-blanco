@@ -1,11 +1,12 @@
 <?php
 include './utils/db.php';
+$id = $_COOKIE["session"];
 
-$sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id";
+$sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.id = '$id' ";
 
 if (isset($_GET['q'])) {
   $search = $_GET['q'];
-  $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$q'";
+  $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$q' AND usuario.id = '$id'";
 }
 
 $resultAsistencias = $conn->query($sql);
@@ -33,34 +34,26 @@ $resultAsistencias = $conn->query($sql);
     <div class="bg-rose-900 gap-4 flex flex-col w-full p-4 h-full">
 
       <?php while ($row = $resultAsistencias->fetch_assoc()) { ?>
-        <div class="p-4 z-10 shadow-2xl bg-rose-700 border gap-4 border-neutral-300 rounded flex jusitfy-center items-center">
-          <iframe class="h-[200px] aspect-video rounded z-50 shadow-lg" src="<?php echo $row['id']; ?>" frameborder="0" allowfullscreen></iframe>
-          <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[200px] p-4 gap-2 flex flex-col">
+        <div class="p-1 pl-3 z-10 shadow-2xl bg-rose-700 border gap-4 border-neutral-300 rounded flex jusitfy-center items-center">
+        <img class="border-4 border-black w-[100px] rounded-full" src="<?php echo  $userimg; ?>" alt="Usuario">
+          <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[100px] p-1 gap-2 flex flex-col">
 
             <table>
-            <tr>
-        
-                
+            <tr> 
                 <th>nombre</th>
                 <th>apellido</th>
                 <th>fecha</th>
                 <th>estado</th>
-
             </tr>
             <tr>   
                 <form method="POST" action="preceptor.php" name ="formeditar" >                
                     <td><input type="text" name="nombre" value=<?php echo $row['nombre'];?> readonly></td>
                     <td><input type="text" name="apellido" value=<?php echo $row['apellido'];?> readonly></td>
                     <td><input type="text" name="fecha" value=<?php echo $row['fecha'];?> readonly ></td>
-                    <td><input type="text" name="estado" value=<?php echo $row['estado'];?> readonly ></td>
-                    
-                    
+                    <td><input type="text" name="estado" value=<?php echo $row['estado'];?> readonly ></td>     
             </tr>
             </table>
-            <div class="absolute bottom-0 left-0 flex gap-2 m-3">
-              <p class="rounded-full px-4 py-1 text-white bg-rose-900 shadow-lg"><?php echo $row['estado']; ?></p>
-              <p class="rounded-full px-4 py-1 text-white bg-rose-900 shadow-lg"><?php echo $row['fecha']; ?></p>
-            </div>
+      
           </div>
         </div>
 

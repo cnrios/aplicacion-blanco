@@ -33,56 +33,43 @@
 
         <?php while ($row = $resultAsistencias->fetch_assoc()) { ?>
           <div class="p-4 z-10 shadow-2xl bg-rose-700 border gap-4 border-neutral-300 rounded flex jusitfy-center items-center">
-          <img class="border-4 border-black w-[200px] rounded-full" src="<?php 
+          <img class="border-4 border-black w-[100px] rounded-full" src="<?php 
           
           $actualimg = "./assets/images/usuario.jpg";
           $acutalid = $row['id'];
         
-                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
-                       $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                    if(file_exists("./assets/images/$acutalid.jpg")){
+                       $actualimg = "./assets/images/$acutalid.jpg";
                     }
         
-                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
-                      $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                    if(file_exists("./assets/images/$acutalid.jpg")){
+                      $actualimg = "./assets/images/$acutalid.jpg";
                     }
         
-                    if(file_exists("./assets/images/'.$acutalid.'.jpg;")){
-                     $actualimg = "./assets/images/'.$acutalid.'.jpg;";
+                    if(file_exists("./assets/images/$acutalid.jpg")){
+                     $actualimg = "./assets/images/$acutalid.jpg";
                      }
         
-          echo  $userimg; ?>" alt="Usuario">
-            <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[200px] p-4 gap-2 flex flex-col">
+          echo  $actualimg; ?>" alt="Alumno">
+            <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[100px] p-4 gap-2 flex flex-col">
 
               <table>
-              <tr>
-          
-                  
-                  <th>nombre</th>
-                  <th>apellido</th>
-                  <th>fecha</th>
-                  <th>estado</th>
-
-              </tr>
-              <tr>   
-                  <form method="POST" action="preceptor.php" name ="formeditar" >                
+                <tr>    
+                    <th>nombre</th>
+                    <th>apellido</th>
+                    <th>fecha</th>
+                   <th>estado</th>
+                </tr>
+                <tr>   
+                   <form method="POST" action="preceptor.php" name ="formeditar" >                
                       <td><input type="text" name="nombre" value=<?php echo $row['nombre'];?> readonly></td>
                       <td><input type="text" name="apellido" value=<?php echo $row['apellido'];?> readonly></td>
                       <td><input type="text" name="fecha" value=<?php echo $row['fecha'];?>></td>
                       <td><input type="text" name="estado" value=<?php echo $row['estado'];?>></td>
-                      
-                      <td>
-                      <div class="grid grid-cols-3 gap-4">    
-                      <div class="grid grid-cols-3 gap-4"> <button type="submit" name="guardar" class="registro">Guardar cambios</button> </div>
-                      </div>
-                          <br>
-                      <a class="a" href="preceptor.php?id=<?php echo $row['id'];?>"> Eliminar </a>
-                      </td>
-              </tr>
+                      <td><button type="submit" name="guardar" class="registro">Guardar cambios</button></td>
+                      <td><a class="a" href="preceptor.php?id=<?php echo $row['id'];?>"> Eliminar </a></td>
+                </tr>
               </table>
-              <div class="absolute bottom-0 left-0 flex gap-2 m-3">
-                <p class="rounded-full px-4 py-1 text-white bg-rose-900 shadow-lg"><?php echo $row['estado']; ?></p>
-                <p class="rounded-full px-4 py-1 text-white bg-rose-900 shadow-lg"><?php echo $row['fecha']; ?></p>
-              </div>
             </div>
           </div>
 
