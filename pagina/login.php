@@ -20,11 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id = $row['id'];
         $sql = "SELECT * FROM rol WHERE idusuario ='$id'";
         $result = $conn->query($sql);
-        while ($row = $result->fetch_assoc()) {
-          if($row['idrol']==1){header("location: alumno.php");}
-          if($row['idrol']==2){header("location: preceptor.php");}
-          if($row['idrol']==3){header("location: admin.php");}
-        }
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+            if($row['idrol']==1){header("location: alumno.php");}
+            if($row['idrol']==2){header("location: preceptor.php");}
+            if($row['idrol']==3){header("location: admin.php");}
+            }
+        } else {
+              $msg = '<body> <div class="alert alert-danger">
+                      <strong class="text-red-900"> Debes pedirle a un Administrador que te asigne un rol.</strong>
+                      </div> </body>';}
+
       } else {
           $msg = '<body> <div class="alert alert-danger">
           <strong class="text-red-900"> La contraseña ingresada es incorrecta.</strong>
