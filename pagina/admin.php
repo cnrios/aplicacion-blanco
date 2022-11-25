@@ -56,17 +56,23 @@ $resultAdmin = $conn->query($sql);
 
               <table>
                 <tr>    
+                    <th>ID de usuario</th>
                     <th>nombre</th>
                     <th>apellido</th>
-                    <th>fecha</th>
-                   <th>estado</th>
+                    <th>ID Rol</th>
+                    <th>Rol</th>
                 </tr>
                 <tr>   
                    <form method="POST" action="preceptor.php" name ="formeditar" >                
+                      <td><input type="text" name="id" value=<?php echo $row['id'];?> readonly></td>
                       <td><input type="text" name="nombre" value=<?php echo $row['nombre'];?> readonly></td>
-                      <td><input type="text" name="apellido" value=<?php echo $row['apellido'];?> readonly></td>
-                      <td><input type="text" name="fecha" value=<?php echo $row['fecha'];?>></td>
-                      <td><input type="text" name="estado" value=<?php echo $row['estado'];?>></td>
+                      <td><input readonly type="text" name="apellido" value=<?php echo $row['apellido'];?>></td>
+                      <td><input type="text" name="rol" value=<?php echo $row['idrol'];?>></td>
+                      <td><input readonly type="text" name="apellido" value=<?php 
+                       if($row['idrol']==1){echo "alumno";}
+                       if($row['idrol']==2){echo "preceptor";}
+                       if($row['idrol']==3){echo "administrador";}                     
+                      ?>></td>
                       <td><button type="submit" name="guardar" class="registro">Guardar cambios</button></td>
                       <td><a class="a" href="preceptor.php?id=<?php echo $row['id'];?>"> Eliminar </a></td>
                 </tr>
@@ -83,29 +89,3 @@ $resultAdmin = $conn->query($sql);
 </body>
 
 </html>
-
-
-<select name="lenguaje" id="" form="form" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
-        <option value="" disabled selected>Lenguaje</option>
-        <option value="">HTML</option>
-        <option value="CSS">CSS</option>
-        <option value="JavaScript">JavaScript</option>
-        <option value="C++">C++</option>
-        <option value="C++">C</option>
-        <option value="C++">C#</option>
-        <option value="PHP">PHP</option>
-        <option value="Unity">Unity</option>
-        <option value="Java">Java</option>
-        <option value="Python">Python</option>
-        <option value="Python">Kotlin</option>
-        <option value="Python">Swift</option>
-        <option value="Python">Dart</option>
-      </select>
-      <textarea name="descrip" form="form" placeholder="Descripcion" id="" cols="30" rows="5" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700"></textarea>
-    
-    <select name="dificultad" id="" form="form" class="w-full border border-neutral-400 px-4 py-2 text-xl focus:outline-none text-neutral-700">
-      <option value="" disabled selected>Dificultad</option>
-      <option value="Basico">Basico</option>
-      <option value="Intermedio">Intermedio</option>
-      <option value="Avanzado">Avanzado</option>
-    </select>
