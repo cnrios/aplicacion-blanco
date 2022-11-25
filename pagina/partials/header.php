@@ -72,8 +72,7 @@ if (isset($_GET['q'])) $search = $_GET['q'];
       <div class="flex flex-col justify-center items-center p-4 gap-2 bg-rose-700">
       <a href="cambiarfoto.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Cambiar Foto</a>
       <?php if ($idrol==1) { ?>
-        <a href="darpresentetag.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente con TAG</a>
-	  	  <a href="darpresenteform.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente por formulario</a>
+        <a href="darpresenteform.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Dar presente</a>
         <?php } ?>
       <a href="logout.php" class="text-xl text-white cursor-pointer bg-rose-900 rounded p-2 w-full">Cerrar sesion</a>
       </div>

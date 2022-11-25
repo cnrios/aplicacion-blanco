@@ -63,9 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           if(file_exists("./assets/images/$id.png")){unlink("./assets/images/$id.jpg"); }
           $success = "El archivo " . htmlspecialchars(basename($file)) . " ha sido cargado con éxito.";
           if(rename("./assets/images/$file", "./assets/images/$id.$file_type")){
-          $msg = '<div class="alert alert-success">
-                  <strong class="text-green-700">'.$success.'.</strong> 
-                 </div>';              
+            clearstatcache();
+             $msg = '<div class="alert alert-success">
+                     <strong class="text-green-700">'.$success.'.</strong> 
+                     </div>';              
           } 
         } else {
            $msg = $msg. '<div class="alert alert-danger">

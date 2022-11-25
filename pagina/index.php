@@ -63,20 +63,20 @@ $resultAsistencias = $conn->query($sql);
 
   echo  $actualimg; ?>" alt="Alumno">
  
-    <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[100px] p-4 gap-2 flex flex-col">
+    <div class="relative shadow-lg bg-rose-600 rounded w-full h-[100px] p-4 gap-2 flex flex-col">
 
       <table>
         <tr>    
-            <th>nombre</th>
-            <th>apellido</th>
-            <th>fecha</th>
-           <th>estado</th>
+            <th><div class="w-60 px-1 bg-black "><p class="py-1 text-white text-center">Nombre</p></div></th>
+            <th><div class="w-60 px-1 bg-black "><p class="py-1 text-white text-center">Apellido</p></div></th>
+            <th><div class="w-60 px-1 bg-black "><p class="py-1 text-white text-center">Fecha</p></div></th>
+            <th><div class="w-60 px-1 bg-black "><p class="py-1 text-white text-center">Estado</p></div></th>
         </tr>
         <tr>                  
-              <td><p class="bg-white"> <?php echo $row['nombre'];?> </p></td>
-              <td><p class="bg-white"> <?php echo $row['apellido'];?> </p></td>
-              <td><p class="bg-white"> <?php echo $row['fecha'];?> </p></td>
-              <td><p class="bg-white"> <?php echo $row['estado'];?> </p></td>
+              <td><div class="w-60 px-1 py-1 bg-black "><p class="py-1 bg-white text-center"> <?php echo $row['nombre'];?> </p></div></td>
+              <td><div class="w-60 px-1 py-1 bg-black "><p class="py-1 bg-white text-center"><?php echo $row['apellido'];?> </p></td>
+              <td><div class="w-60 px-1 py-1 bg-black "><p class="py-1 bg-white text-center"><?php echo $row['fecha'];?> </p></td>
+              <td><div class="w-60 px-1 py-1 bg-black "><p class="py-1 bg-white text-center"><?php echo $row['estado'];?> </p></td>
         </tr>
       </table>
     </div>
