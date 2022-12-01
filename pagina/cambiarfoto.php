@@ -1,20 +1,20 @@
 <?php
 
-$id = $_COOKIE["session"];
+$nombre = $_COOKIE["session"];
 
 
 $userimg = "./assets/images/usuario.jpg";
 
-if(file_exists("./assets/images/$id.jpg")){
-  $userimg = "./assets/images/$id.jpg";
+if(file_exists("./assets/images/$nombre.jpg")){
+  $userimg = "./assets/images/$nombre.jpg";
 }
 
-if(file_exists("./assets/images/$id.jpeg")){
-  $userimg = "./assets/images/$id.jpeg";
+if(file_exists("./assets/images/$nombre.jpeg")){
+  $userimg = "./assets/images/$nombre.jpeg";
 }
 
-if(file_exists("./assets/images/$id.png")){
-  $userimg = "./assets/images/$id.png";
+if(file_exists("./assets/images/$nombre.png")){
+  $userimg = "./assets/images/$nombre.png";
 } 
 
 
@@ -58,11 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         //Mover el archivo a la ruta, borrar cualquier archivo que contenga la id del user y renombrar el archivo con la id.
         if (move_uploaded_file($url_temp, $url_target)) {
-          if(file_exists("./assets/images/$id.jpg")){unlink("./assets/images/$id.jpg"); }
-         if(file_exists("./assets/images/$id.jpeg")){unlink("./assets/images/$id.jpg"); }
-          if(file_exists("./assets/images/$id.png")){unlink("./assets/images/$id.jpg"); }
+          if(file_exists("./assets/images/$nombre.jpg")){unlink("./assets/images/$nombre.jpg"); }
+          if(file_exists("./assets/images/$nombre.jpeg")){unlink("./assets/images/$nombre.jpg"); }
+          if(file_exists("./assets/images/$nombre.png")){unlink("./assets/images/$nombre.jpg"); }
           $success = "El archivo " . htmlspecialchars(basename($file)) . " ha sido cargado con éxito.";
-          if(rename("./assets/images/$file", "./assets/images/$id.$file_type")){
+          if(rename("./assets/images/$file", "./assets/images/$nombre.$file_type")){
              clearstatcache();
              $msg = '<div class="alert alert-success">
                      <strong class="text-green-700">'.$success.'.</strong> 

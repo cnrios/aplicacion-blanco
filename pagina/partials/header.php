@@ -16,16 +16,16 @@ if (isset($_COOKIE['session'])) {
   
   $userimg = "./assets/images/usuario.jpg";
 
-if(file_exists("./assets/images/$id.jpg")){
-  $userimg = "./assets/images/$id.jpg";
+if(file_exists("./assets/images/$nombre.jpg")){
+  $userimg = "./assets/images/$nombre.jpg";
 }
 
-if(file_exists("./assets/images/$id.jpeg")){
-  $userimg = "./assets/images/$id.jpeg";
+if(file_exists("./assets/images/$nombre.jpeg")){
+  $userimg = "./assets/images/$nombre.jpeg";
 }
 
-if(file_exists("./assets/images/$id.png")){
-  $userimg = "./assets/images/$id.png";
+if(file_exists("./assets/images/$nombre.png")){
+  $userimg = "./assets/images/$nombre.png";
 } 
 
   $sql = "SELECT * FROM rol WHERE idusuario ='$id'";
