@@ -8,9 +8,7 @@
     $search = $_GET['q'];
     $sql = "SELECT * FROM asistencia JOIN usuario WHERE asistencia.idusuario = usuario.id AND usuario.apellido = '$q'";
   }
-  if (isset($ideliminar)) {
-    $sql = "DELETE FROM asistencia WHERE id = $ideliminar";
-  }
+
 
   $resultAsistencias = $conn->query($sql);
   ?>
@@ -73,9 +71,10 @@
                       <td><div class="w-45 px-1 py-1 bg-black "><input class="py-1 bg-white text-center" type="text" name="apellido" value=<?php echo $row['apellido'];?> readonly></div></td>
                       <td><div class="w-45 px-1 py-1 bg-black "><input class="py-1 bg-white text-center" type="text" name="fecha" value=<?php echo $row['fecha'];?>></div></td>
                       <td><div class="w-45 px-1 py-1 bg-black "><input class="py-1 bg-white text-center" type="text" name="estado" value=<?php echo $row['estado'];?>></div></td>
-                      <td><div class="w-45 px-1 py-1 bg-black "><div class="w-45 px-1 py-1 bg-rose-800"><button type="submit" name="guardar" class=" text-center text-white">Guardar cambios</button></div></div></td>
-                      <td><div class="w-45 px-1 py-1 bg-black "><div class="w-45 px-1 py-1 bg-rose-800"><a class=" text-center text-white" href="preceptor.php?ideliminar=<?php echo $row['asistencia.id'];?>"> Eliminar </a></div></div></td>
-                </tr>
+
+						          <td><p><a style="color: black;" href="cambiarEstado.php">Cambiar Estado </a><p></td>
+						          <td><p><a style="color: black;" href="eliminarAlumnno.php">Eliminar Alumno</a><p></td>                
+                  </tr>
               </table>
             </div>
           </div>

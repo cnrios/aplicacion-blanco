@@ -17,8 +17,8 @@ $idunico = uniqid();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $sql = "select * from usuario where email = '$email'";
-  $result = $conn->query($sql);
+  $consulta = "SELECT * from usuario where email = '$email'";
+  $result = $conn->query($consulta);
 
   if ($result->num_rows > 0) {
     $msg = '
@@ -27,22 +27,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         	</div>';
   } else {
     if (strpos($email, $arroba) !== false ){
-      $sql = "insert into usuario (nombre,apellido,email,telefono,contrasena) values ('$nombre','$apellido', '$email','$telefono', '$hashcontra')";
-      
-      if ($conn->query($sql) === TRUE) {
+      $consultaInsert = "INSERT INTO usuario (nombre,apellido,email,telefono,contrasena) values ('$nombre','$apellido', '$email','$telefono', '$hashcontra')";
+      $resultInsert = mysqli_query($conn, $consultaInsert);
+
+      if ($resultInsert) {
         $msg = '<div class="alert alert-success">
 				<strong class="text-green-700">El usuario se ha creado correctamente!!.</strong> 
         	</div>';
 
-        $sql = "select * from usuario where email = '$email'";
-        $result = $conn->query($sql);
-          while ($row = $result->fetch_assoc()) {
+        $CONSULTA4 = "SELECT * from usuario where email = '$email'";
+        $result2 = $conn->query($CONSULTA4);
+          while ($row = $result2->fetch_assoc()) {
             $id = $row['id'];
           }
-        $sql = "insert into tag (tag,idusuario) values ('$idunico','$id')";     
+          $consultaInsertROL = "INSERT INTO rol( idusuario, idrol) VALUES ('$id', 4)";
+          $resultadoROL = mysqli_query($conn, $consultaInsertROL);
+
+
+        $sql = "INSERT into tag (tag,idusuario) values ('$idunico','$id')";     
         if ($conn->query($sql) === TRUE) {
           $msg = $msg.'
-        <div class="alert alert-success">
+            <div class="alert alert-success">
           <strong class="text-green-700">El TAG '.$idunico.' se asigno correctamente al usuario.</strong><br> 
             </div>';} else {
               $msg = $msg.'
@@ -58,12 +63,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>';}
       }
 
-    }
+      /*if($result){
+        $resultado = "SELECT id FROM usuarios WHERE email = '$email' ";
+        $s = mysqli_query($conn,$resultado);
+        while($row = $s->fetch_assoc())
+        {
+          $messi = $row['id'];
+          $z = "INSERT INTO rol( idusuario, idrol) VALUES ('$messi', 4)"; 
+          $resultadoTAG = mysqli_query($conn,$z);
+           
+         }
+        }*/
+    
+
   
+  }
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -71,12 +88,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REgistro del Suizo</title>
+  <title>Registro del Suizo</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="stykit.js" defer></script>
 </head>
 
-<body>
+<body class="overflow-x-hidden bg-rose-900">
   <?php include './partials/header.php'; ?>
   <div class="bg-rose-800 flex justify-center items-center">
     <form action="register.php" method="post" class="flex shadow-xl flex-col bg-white px-12 gap-4 py-4 rounded justify-center items-center">
@@ -93,4 +110,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </body>
 
-</html> 
+</html>

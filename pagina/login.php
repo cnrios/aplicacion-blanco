@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if($row['idrol']==1){header("location: alumno.php");}
             if($row['idrol']==2){header("location: preceptor.php");}
             if($row['idrol']==3){header("location: admin.php");}
+            if($row['idrol']==4){header("location: usuario.php");}
+
             }
         } else {
               $msg = '<body> <div class="alert alert-danger">

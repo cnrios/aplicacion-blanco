@@ -3,10 +3,6 @@ include './utils/db.php';
 
 $sql = "SELECT * FROM rol JOIN usuario WHERE rol.idusuario = usuario.id";
 
-if (isset($_GET['q'])) {
-  $search = $_GET['q'];
-  $sql = "SELECT * FROM roles JOIN usuario WHERE roles.id = usuario.id AND usuario.apellido = '$search'";
-}
 
 $resultAdmin = $conn->query($sql);
 
@@ -50,7 +46,7 @@ $resultAdmin = $conn->query($sql);
                      $actualimg = "./assets/images/$acutalid.png";
                      }
         
-          echo  $actualimg; ?>" alt="Alumno">
+          echo  $actualimg; ?> " alt="Alumno">
          
             <div class="relative  shadow-lg bg-rose-600 rounded w-full h-[100px] p-4 gap-2 flex flex-col">
 
@@ -63,7 +59,7 @@ $resultAdmin = $conn->query($sql);
                     <th>Rol</th>
                 </tr>
                 <tr>   
-                   <form method="POST" action="preceptor.php" name ="formeditar" >                
+                   <form method="POST" action="admin.php" name ="formeditar" >                
                       <td><input type="text" name="id" value=<?php echo $row['id'];?> readonly></td>
                       <td><input type="text" name="nombre" value=<?php echo $row['nombre'];?> readonly></td>
                       <td><input readonly type="text" name="apellido" value=<?php echo $row['apellido'];?>></td>
@@ -71,12 +67,17 @@ $resultAdmin = $conn->query($sql);
                       <td><input readonly type="text" name="apellido" value=<?php 
                        if($row['idrol']==1){echo "alumno";}
                        if($row['idrol']==2){echo "preceptor";}
-                       if($row['idrol']==3){echo "administrador";}                     
+                       if($row['idrol']==3){echo "administrador";}     
+                       if($row['idrol']==4){echo "usuario";}     
                       ?>></td>
-                      <td><button type="submit" name="guardar" class="registro">Guardar cambios</button></td>
-                      <td><a class="a" href="preceptor.php?id=<?php echo $row['id'];?>"> Eliminar </a></td>
+						          <td><p><a style="color: black;" href="cambiaroles.php">Cambiar rol</a><p></td>
+						          <td><p><a style="color: black;" href="eliminar.php">Eliminar rol</a><p></td>
+
+
+
                 </tr>
               </table>
+
             </div>
           </div>
 
@@ -86,6 +87,7 @@ $resultAdmin = $conn->query($sql);
     </div>
   </div>
 
+  
 </body>
 
 </html>
