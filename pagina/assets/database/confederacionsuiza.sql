@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2022 a las 11:02:10
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 01-12-2022 a las 12:29:21
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,50 +39,9 @@ CREATE TABLE `asistencia` (
 --
 
 INSERT INTO `asistencia` (`id`, `idusuario`, `fecha`, `estado`) VALUES
-(1, 18, '2022-11-24 00:35:35', 'presente'),
-(6, 20, '2022-11-24 09:41:43', 'presente'),
-(7, 23, '2022-11-24 09:42:33', 'presente'),
-(8, 22, '2022-11-24 09:42:33', 'ausente'),
-(9, 27, '2022-11-24 09:42:33', 'tarde');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `curso`
---
-
-CREATE TABLE `curso` (
-  `id` int(10) NOT NULL,
-  `idusuario` int(10) NOT NULL,
-  `idcurso` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `curso`
---
-
-INSERT INTO `curso` (`id`, `idusuario`, `idcurso`) VALUES
-(0, 18, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cursos`
---
-
-CREATE TABLE `cursos` (
-  `id` int(4) NOT NULL,
-  `year` int(1) NOT NULL,
-  `division` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cursos`
---
-
-INSERT INTO `cursos` (`id`, `year`, `division`) VALUES
-(1, 6, 11),
-(2, 4, 10);
+(16, 22, '2022-11-28 01:28:58', 'presente'),
+(17, 22, '2022-12-01 03:19:57', 'presente'),
+(18, 22, '2022-12-01 03:20:04', 'presente');
 
 -- --------------------------------------------------------
 
@@ -101,10 +60,11 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id`, `idusuario`, `idrol`) VALUES
-(1, 18, 3),
+(1, 18, 2),
 (2, 22, 1),
 (3, 23, 3),
-(4, 27, 2);
+(4, 27, 2),
+(5, 0, 4);
 
 -- --------------------------------------------------------
 
@@ -124,7 +84,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `rol`) VALUES
 (1, 'alumno'),
 (2, 'preceptor'),
-(3, 'admin');
+(3, 'admin'),
+(4, 'usuario');
 
 -- --------------------------------------------------------
 
@@ -152,7 +113,18 @@ INSERT INTO `tag` (`id`, `tag`, `idusuario`) VALUES
 (13, '637ee5d064f83', 24),
 (14, '637ee6565d9ac', 25),
 (15, '637ee6cfa6e0c', 26),
-(16, '637ee6ff84ade', 27);
+(16, '637ee6ff84ade', 27),
+(17, '63840c8e9412a', 28),
+(18, '638411e6a4bcb', 29),
+(19, '63841395c6502', 30),
+(20, '638414af15c06', 31),
+(21, '63841fc7cc739', 41),
+(22, '6386c5dd6bead', 47),
+(23, '6386c5e72f282', 48),
+(24, '6386c6084c6e0', 49),
+(25, '6387c8467815d', 50),
+(26, '6387d015d6333', 51),
+(27, '638838e772589', 52);
 
 -- --------------------------------------------------------
 
@@ -180,7 +152,9 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `contras
 (21, 'asd', 'asd', 'asd@asd', 123, '$2y$10$xXwRnZuczoxR8l6KJTiui.fMxVgt75S8g9OoUN/XuJLj7PnbcesRu'),
 (22, 'alumno', 'alumno', 'alumno@gmail.com', 1100000000, '$2y$10$W.Gb3exDYAFvdU8NtTgyGe2OO4ayU4okzN.zs4Pk8HnhkXxijHa3G'),
 (23, 'admin', 'admin', '@admin', 1111111111, '$2y$10$jN34ytyaffVWCODtibsYJu11hhs.0rNwKapwDB6WOWr456IwWm0/.'),
-(27, 'preceptor', 'preceptor', 'preceptor@gmail.com', 1111111111, '$2y$10$iN/idok76br85t3Fbhbq1.jGdMUM9blvbJurdIe.0GLs01dftTYTS');
+(27, 'preceptor', 'preceptor', 'preceptor@gmail.com', 1111111111, '$2y$10$iN/idok76br85t3Fbhbq1.jGdMUM9blvbJurdIe.0GLs01dftTYTS'),
+(51, 'y', 'y', 'y@gmial.com', 6, '$2y$10$hVbIymejRA1e/NWqj.myW.V3z31Aeio9YGixm.fFUsydixXxhGcGS'),
+(52, 'zzz', 'zzz', 'z@gmail.com', 1, '$2y$10$gioI.GgyvR7On7HS0SfH9uRFn6.1yStz9GBbXU/UtBZPsrdtW14xO');
 
 --
 -- Índices para tablas volcadas
@@ -190,12 +164,6 @@ INSERT INTO `usuario` (`id`, `nombre`, `apellido`, `email`, `telefono`, `contras
 -- Indices de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `cursos`
---
-ALTER TABLE `cursos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -230,37 +198,31 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `asistencia`
 --
 ALTER TABLE `asistencia`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `cursos`
---
-ALTER TABLE `cursos`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
